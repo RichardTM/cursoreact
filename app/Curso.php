@@ -13,7 +13,16 @@ class Curso extends Model
         return $this->hasMany(Nivel::class);
     }
 
+    public function desarrollador(){
 
+        return $this->belongsTo(Desarrollador::class);
+    }
+
+
+    public function lengua(){
+
+        return $this->belongsTo(Lengua::class);
+    }
 
 
 }

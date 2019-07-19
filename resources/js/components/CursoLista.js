@@ -44,7 +44,7 @@ const CursoLista = (props) => {
                     <div className="card">
                         <div className="card-header">Detalles del curso</div>
                         <div className="card-body">
-                                Desarrollado por: Richard
+                                Desarrollado por: {curso.desarrollador.nombres}  {curso.desarrollador.apellidos}
                                     <div className="row">
                                         <div className="col-sm-12">
                                             Niveles

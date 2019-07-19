@@ -13,8 +13,11 @@ class CreateDesarrolladorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('desarrolladors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('desarrolladores', function (Blueprint $table) {
+            $table->Increments('id');
+            $table->string('nombres', 50);
+            $table->string('apellidos', 50);
+            $table->string('email', 100);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateDesarrolladorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('desarrolladors');
+        Schema::dropIfExists('desarrolladores');
     }
 }

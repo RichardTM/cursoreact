@@ -65548,7 +65548,7 @@ function Course(props) {
     width: '250px'
   };
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card m-3 ",
+    className: "card m-3",
     style: divStyle
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
@@ -65698,13 +65698,15 @@ var CursoLista = function CursoLista(props) {
     className: "card-header"
   }, "Detalles del curso"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
-  }, "Desarrollado por: Richard", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Desarrollado por: ", curso.desarrollador.nombres, "  ", curso.desarrollador.apellidos, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-12"
-  }, "Niveles", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "card-text"
-  }, curso.niveles ? curso.niveles : 'lista de niveles'))))))));
+  }, "Niveles", curso.niveles.map(function (nivel) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      key: nivel.id
+    }, nivel.nivel);
+  }))))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CursoLista);

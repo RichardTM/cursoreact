@@ -14,9 +14,9 @@ class DesarrolladorController extends Controller
      */
     public function index()
     {
-        //
+        $qs = Desarrollador::all();
+        return $qs;
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -24,9 +24,8 @@ class DesarrolladorController extends Controller
      */
     public function create()
     {
-        //
+        return view('desarrolladores.creardesarrollador');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,9 +34,13 @@ class DesarrolladorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $desarrollador= new Desarrollador();
+        $desarrollador->nombres =$request['nombres'];
+        $desarrollador->apellidos =$request['apellidos'];
+        $desarrollador->email =$request['email'];
+        $desarrollador->save();
+        return redirect('desarrolladores/lista');
     }
-
     /**
      * Display the specified resource.
      *
@@ -46,9 +49,8 @@ class DesarrolladorController extends Controller
      */
     public function show(Desarrollador $desarrollador)
     {
-        //
+        return $desarrollador;
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -57,9 +59,8 @@ class DesarrolladorController extends Controller
      */
     public function edit(Desarrollador $desarrollador)
     {
-        //
+        return view('desarrolladores.editardesarrollador', ['desarrollador' => $desarrollador]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -69,9 +70,12 @@ class DesarrolladorController extends Controller
      */
     public function update(Request $request, Desarrollador $desarrollador)
     {
-        //
+        $desarrollador->nombres =$request['nombres'];
+        $desarrollador->apellidos =$request['apellidos'];
+        $desarrollador->email =$request['email'];
+        $desarrollador->save();
+        return redirect('desarrolladores/lista');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -80,6 +84,12 @@ class DesarrolladorController extends Controller
      */
     public function destroy(Desarrollador $desarrollador)
     {
-        //
+        $desarrollador->delete();
+        return redirect('desarrolladores/lista');
+    }
+    public function list()
+    {
+        $rs = $this->index();
+        return view('desarrolladores.listadesarrollador', ['rs' => $rs]);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Curso;
 use Illuminate\Http\Request;
 use App\Nivel;
+use App\Desarrollador;
+use App\Lengua;
 
 class CursoController extends Controller
 {
@@ -19,7 +21,10 @@ class CursoController extends Controller
         // return $qs;
 
         $rs= Curso::with([
+            'desarrollador',
+            'lengua',
             'niveles'
+
         ])->get();
 
         return $rs;
@@ -39,8 +44,10 @@ class CursoController extends Controller
     public function create()
     {
           $niveles = Nivel::all();
+          $desarrolladores = Desarrollador::all();
+          $lenguas = Lengua::all();
 
-        return view('cursos.crearcurso', compact('niveles') );
+        return view('cursos.crearcurso', compact('niveles', 'desarrolladores', 'lenguas') );
     }
 
     /**
@@ -68,7 +75,8 @@ class CursoController extends Controller
     public function show(Curso $curso)
     {
         $curso->load([
-
+            'desarrollador',
+            'lengua',
             'niveles',
         ]);
         return $curso;
@@ -85,8 +93,10 @@ class CursoController extends Controller
     public function edit(Curso $curso)
     {
         $niveles = Nivel::all();
+        $desarrolladores = Desarrollador::all();
+        $lenguas = Lengua::all();
 
-        return view('cursos/editar', ['curso' => $curso], compact('niveles'));
+        return view('cursos/editar', ['curso' => $curso], compact('niveles', 'desarrolladores', 'lenguas'));
 
     }
 

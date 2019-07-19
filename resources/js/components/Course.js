@@ -11,7 +11,7 @@ export default function Course(props) {
     }
     return (
 
-        <div className="card m-3 " style={divStyle}>
+        <div className="card m-3" style={divStyle}>
 
             <div className="card-body">
 

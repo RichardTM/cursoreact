@@ -28,7 +28,7 @@ const Root = () => (
         <Switch>
             <Route path="/" exact component={App}/>
             <Route path="/cursos/:id" exact component={CursoLista} />
-            {/* <Route path="/cursos/niveles/:id" exact component={NivelList} /> */}
+            {/* <Route path="/niveles/:id" exact component={NivelList} /> */}
             <Route component={NotFound} />
         </Switch>
     </HashRouter>

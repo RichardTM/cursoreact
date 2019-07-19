@@ -41,8 +41,8 @@ export default function NivelList(props) {
                         <tr className="text-center">
                             <th>Nivel</th>
                             <th>Descripcion</th>
-                            <th>Curso</th>
-                            <th>Opciones</th>
+                            <th>Lecciones</th>
+
                         </tr>
                     </thead>
                     <tbody class="table-light">

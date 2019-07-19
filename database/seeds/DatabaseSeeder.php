@@ -17,10 +17,15 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables([
             'cursos',
             'niveles',
-            'lecciones'
+            'lecciones',
+            'desarrolladores',
+            'lenguas'
         ]);
 
         // $this->call(UsersTableSeeder::class);
+
+        $this->call(DesarrolladorSeeder::class);
+        $this->call(LenguaSeeder::class);
         $this->call(CursoSeeder::class);
         $this->call(NivelSeeder::class);
         $this->call(LeccionSeeder::class);

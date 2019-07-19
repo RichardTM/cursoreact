@@ -2,9 +2,6 @@ import React, {useState, useEffect} from 'react'
 import Course from './Course'
 import Loading from './Loading'
 
-
-
-
 export default function CourseList() {
 
     const [loading, setLoading] = useState(true);

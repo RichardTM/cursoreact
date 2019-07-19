@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Desarrollador extends Model
+class Lengua extends Model
 {
-    protected $table='desarrolladores';
+    protected $table='lenguas';
 
-    public function cursos(){
+    public function curso(){
 
         return $this->hasMany(Curso::class);
     }
-
 }
