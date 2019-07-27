@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Loading from './Loading';
+import DesarrolladorCurso from './DesarrolladorCurso';
+import Nivel from './Nivel';
+import NivelList from './NivelList';
 
 const CursoLista = (props) => {
+
+
     const cargarCurso = () => {
         let url= `/cursos/${props.match.params.id}`
         axios.get(url)
@@ -26,7 +31,8 @@ const CursoLista = (props) => {
             <div className="row">
                 <div className="col-sm-4">
                     <div className="card">
-                        <p></p>
+
+                    <i class="fa fa fas fa-images fa-10x"></i>
                         <div className="card-body">
                             <h2 className="card-title">
                                  {curso.curso ? curso.curso : 'Nombre del curso'}
@@ -43,8 +49,11 @@ const CursoLista = (props) => {
                 <div className="col-sm-8">
                     <div className="card">
                         <div className="card-header">Detalles del curso</div>
+
                         <div className="card-body">
-                                Desarrollado por: {curso.desarrollador.nombres}  {curso.desarrollador.apellidos}
+                                Desarrollado por:
+
+                                <DesarrolladorCurso nombre={curso.desarrollador.nombres} apellido={curso.desarrollador.apellidos}/>
                                     <div className="row">
                                         <div className="col-sm-12">
                                             Niveles

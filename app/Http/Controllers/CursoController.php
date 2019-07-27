@@ -20,14 +20,14 @@ class CursoController extends Controller
         // $qs = Curso::all();
         // return $qs;
 
-        $rs= Curso::with([
+        return Curso::with([
             'desarrollador',
             'lengua',
             'niveles'
 
         ])->get();
 
-        return $rs;
+        // return $rs;
 
         // $curso= Curso::with([
         //     'niveles'
@@ -62,6 +62,8 @@ class CursoController extends Controller
         $curso->curso = $request['curso'];
         $curso->descripcion = $request['descripcion'];
         $curso->imagen = $request['imagen'];
+        $curso->lengua_id = $request['lengua_id'];
+        $curso->desarrollador_id = $request['desarrollador_id'];
         $curso->save();
         return redirect('cursos/lista');
     }
@@ -112,6 +114,8 @@ class CursoController extends Controller
         $curso->curso = $request['curso'];
         $curso->descripcion = $request['descripcion'];
         $curso->imagen = $request['imagen'];
+        $curso->lengua_id = $request['lengua_id'];
+        $curso->desarrollador_id = $request['desarrollador_id'];
         $curso->save();
         return redirect('cursos/lista');
     }

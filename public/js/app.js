@@ -60507,7 +60507,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65489,6 +65489,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CourseList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CourseList */ "./resources/js/components/CourseList.js");
 /* harmony import */ var _NotFound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NotFound */ "./resources/js/components/NotFound.js");
 /* harmony import */ var _CursoLista__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CursoLista */ "./resources/js/components/CursoLista.js");
+/* harmony import */ var _NivelList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./NivelList */ "./resources/js/components/NivelList.js");
+/* harmony import */ var _CursoForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CursoForm */ "./resources/js/components/CursoForm.js");
+
+
 
 
 
@@ -65505,7 +65509,7 @@ var App = function App() {
     className: "display-1"
   }, "CURSO REACT")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CourseList__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CursoForm__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CourseList__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 
 var Root = function Root() {
@@ -65517,6 +65521,10 @@ var Root = function Root() {
     path: "/cursos/:id",
     exact: true,
     component: _CursoLista__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/niveles/:id",
+    exact: true,
+    component: _NivelList__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     component: _NotFound__WEBPACK_IMPORTED_MODULE_4__["default"]
   })));
@@ -65626,6 +65634,128 @@ function CourseList() {
 
 /***/ }),
 
+/***/ "./resources/js/components/CursoForm.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/CursoForm.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CursoForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function CursoForm() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      curso = _useState2[0],
+      setCurso = _useState2[1];
+
+  var onChange = function onChange(e) {
+    setCurso(_objectSpread({}, curso, _defineProperty({}, e.target.name, e.target.value)));
+    console.log(curso);
+  };
+
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    axios.post('/cursos', curso).then(function (res) {
+      console.log(res);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card mt-5 py-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "card-title text-center mb-5"
+  }, "NUEVO CURSO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: onSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "",
+    className: "col-sm-4 col-lg-3 col-form-label"
+  }, "Nombre del Curso"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-9 col-form-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: onChange,
+    name: "curso",
+    type: "text",
+    className: "form-control",
+    placeholder: "Nombre del Curso"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "",
+    className: "col-sm-4 col-lg-3 col-form-label"
+  }, "Descripcion"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-9 col-form-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: onChange,
+    name: "descripcion",
+    type: "text",
+    className: "form-control",
+    placeholder: "Descripcion del Curso"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "",
+    className: "col-sm-4 col-lg-2 col-form-label"
+  }, "Imagen"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4 col-form-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: onChange,
+    name: "imagen",
+    type: "text",
+    className: "form-control"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "",
+    className: "col-sm-4 col-lg-2 col-form-label"
+  }, "Lengua"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4 col-form-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: onChange,
+    name: "lengua_id",
+    type: "text",
+    className: "form-control"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "",
+    className: "col-sm-4 col-lg-3 col-form-label"
+  }, "Desarrollador"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-9 col-form-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: onChange,
+    name: "desarrollador_id",
+    className: "form-control",
+    placeholder: "Nombre "
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "submit",
+    className: "btn btn-success btn-block py-3 mt-2",
+    value: "Guardar"
+  }))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/CursoLista.js":
 /*!***********************************************!*\
   !*** ./resources/js/components/CursoLista.js ***!
@@ -65638,6 +65768,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _DesarrolladorCurso__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DesarrolladorCurso */ "./resources/js/components/DesarrolladorCurso.js");
+/* harmony import */ var _Nivel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Nivel */ "./resources/js/components/Nivel.js");
+/* harmony import */ var _NivelList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NivelList */ "./resources/js/components/NivelList.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -65645,6 +65778,9 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -65682,7 +65818,9 @@ var CursoLista = function CursoLista(props) {
     className: "col-sm-4"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    "class": "fa fa fas fa-images fa-10x"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     className: "card-title"
@@ -65698,7 +65836,10 @@ var CursoLista = function CursoLista(props) {
     className: "card-header"
   }, "Detalles del curso"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
-  }, "Desarrollado por: ", curso.desarrollador.nombres, "  ", curso.desarrollador.apellidos, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Desarrollado por:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DesarrolladorCurso__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    nombre: curso.desarrollador.nombres,
+    apellido: curso.desarrollador.apellidos
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-12"
@@ -65710,6 +65851,39 @@ var CursoLista = function CursoLista(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CursoLista);
+
+/***/ }),
+
+/***/ "./resources/js/components/DesarrolladorCurso.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/DesarrolladorCurso.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DesarrolladorCurso; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function DesarrolladorCurso(props) {
+  var divStyle = {
+    width: '250px'
+  };
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card m-3 center",
+    style: divStyle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    "class": "fa fa fas fa-user-tie fa-5x"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "card-title"
+  }, props.nombre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "card-text"
+  }, props.apellido)));
+}
 
 /***/ }),
 
@@ -65737,6 +65911,128 @@ var Loading = function Loading(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Loading);
+
+/***/ }),
+
+/***/ "./resources/js/components/Nivel.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Nivel.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Nivel; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+function Nivel(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, props.nivel ? props.nivel : 'Nombre del nivel '), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, props.descripcion ? props.descripcion : 'Descripción del nivel'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: '/cursos/niveles/' + props.id,
+    className: "btn btn-outline-primary"
+  }, "Ver Detalles"));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/NivelList.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/NivelList.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NivelList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Nivel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Nivel */ "./resources/js/components/Nivel.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function NivelList(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      niveles = _useState4[0],
+      setNiveles = _useState4[1];
+
+  var cargarNiveles = function cargarNiveles() {
+    var url = "/api/cursos/".concat(props.match.params.id, "/nivel");
+    axios.get(url).then(function (resp) {
+      setLoading(false);
+      setNiveles(resp.data);
+    })["catch"](function (err) {
+      setLoading(false);
+      console.log('error al cargar los Niveles. Falle');
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(cargarNiveles, [props.match.params.id]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "display-5 text-center"
+  }, "LISTA NIVELES"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table table-sm table-hover table-bordered"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
+    className: "thead-dark"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+    className: "text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Nivel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Descripcion"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Lecciones"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+    "class": "table-light"
+  }, loading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], null), loading == false && niveles.map(function (item) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nivel__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({}, item, {
+      key: item.id
+    }));
+  })))))) // <div className="container">
+  // <table class="table table-hover">
+  //     <thead>
+  //         <tr className="row">
+  //         <th className="col">Nivel</th>
+  //         <th className="col">Descripcion</th>
+  //         <th className="col">Curso</th>
+  //         </tr>
+  //     </thead>
+  //     <tbody>
+  //       <tr className="row">
+  //             <th className="col">
+  //             {
+  //                 loadingN && <LoadingN/>
+  //             }
+  //             {
+  //                 loadingN == false && niveles.map(item => <Nivel {...item} key={item.id} />)
+  //             }
+  //             </th>
+  //     </tr>
+  //     </tbody>
+  // </table>
+  // </div>
+  ;
+}
 
 /***/ }),
 
