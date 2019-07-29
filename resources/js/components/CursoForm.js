@@ -1,8 +1,12 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
+
 
 export default function CursoForm() {
 
-    const [curso, setCurso] = useState({})
+    const [curso, setCurso] = useState({});
+    const [lenguas, setLengua] = useState([]);
+    const [desarrolladores, setDesarrollador] = useState([]);
 
 
     const onChange = (e) => {
@@ -27,11 +31,42 @@ export default function CursoForm() {
           });
     }
 
+    const cargarLengua = () => {
+        let url= `/lenguas`
+        axios.get(url)
+            .then(respu => {
+                setLengua(respu.data)
+                console.log(respu.data)
+            })
+            .catch(err => {
+                console.log('error al cargar las lenguas')
+            })
+    }
+    useEffect(cargarLengua, [])
 
+
+    const cargarDesarrollador = () => {
+        let url= `/desarrolladores`
+        axios.get(url)
+            .then(respu => {
+                setDesarrollador(respu.data)
+                console.log(respu.data)
+            })
+            .catch(err => {
+                console.log('error al cargar los desarrolladores')
+            })
+    }
+    useEffect(cargarDesarrollador, [])
 
 
         return (
+
+
+
+            <div className="row justify-content-center">
+
             <div className="card mt-5 py-5">
+
                 <div className="card-body" >
                     <h2 className="card-title text-center mb-5">
                     NUEVO CURSO
@@ -80,16 +115,21 @@ export default function CursoForm() {
                                 className="form-control"
                                 />
                             </div>
+
                             <label htmlFor="" className="col-sm-4 col-lg-2 col-form-label">
                                 Lengua
                             </label>
                             <div className="col-sm-4 col-form-label">
-                                <input
-                                onChange={onChange}
-                                name="lengua_id"
-                                type="text"
-                                className="form-control"
-                                />
+                                <select name="lengua_id" onChange={onChange} className="form-control" required="required">
+                                    <option value="">seleccione</option>
+                                    {
+                                                lenguas.map(lengua_id => {
+                                                    return(
+                                                        <option  key={lengua_id.id} value={lengua_id.id}>{lengua_id.lengua}</option>
+                                                    )
+                                                })
+                                            }
+                                </select>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -97,18 +137,28 @@ export default function CursoForm() {
                                 Desarrollador
                             </label>
                             <div className="col-sm-9 col-form-label">
-                                <input
-                                onChange={onChange}
-                                name="desarrollador_id"
-                                className="form-control"
-                                placeholder="Nombre "
-                                />
+                            <select name="desarrollador_id" onChange={onChange} className="form-control" required="required">
+                                    <option value="">seleccione</option>
+                                    {
+                                                desarrolladores.map(desarrollador_id => {
+                                                    return(
+                                                        <option  key={desarrollador_id.id} value={desarrollador_id.id}>{desarrollador_id.nombres} {desarrollador_id.apellidos}</option>
+                                                    )
+                                                })
+                                            }
+                                </select>
                             </div>
                         </div>
 
                         <input type="submit" className="btn btn-success btn-block py-3 mt-2" value="Guardar"/>
                     </form>
+                    <br></br>
+                    <Link to={'/' }  className="btn btn-outline-primary" >
+                    Inicio
+                    </Link>
+
                 </div>
+            </div>
             </div>
         )
     }

@@ -65500,6 +65500,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
@@ -65509,7 +65510,10 @@ var App = function App() {
     className: "display-1"
   }, "CURSO REACT")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CursoForm__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CourseList__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: '/curso/create',
+    className: "btn btn-success"
+  }, "Crear Curso"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CourseList__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 
 var Root = function Root() {
@@ -65525,6 +65529,10 @@ var Root = function Root() {
     path: "/niveles/:id",
     exact: true,
     component: _NivelList__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/curso/create",
+    exact: true,
+    component: _CursoForm__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     component: _NotFound__WEBPACK_IMPORTED_MODULE_4__["default"]
   })));
@@ -65646,6 +65654,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CursoForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -65659,11 +65668,22 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
 function CursoForm() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
       curso = _useState2[0],
       setCurso = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      lenguas = _useState4[0],
+      setLengua = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      desarrolladores = _useState6[0],
+      setDesarrollador = _useState6[1];
 
   var onChange = function onChange(e) {
     setCurso(_objectSpread({}, curso, _defineProperty({}, e.target.name, e.target.value)));
@@ -65679,7 +65699,32 @@ function CursoForm() {
     });
   };
 
+  var cargarLengua = function cargarLengua() {
+    var url = "/lenguas";
+    axios.get(url).then(function (respu) {
+      setLengua(respu.data);
+      console.log(respu.data);
+    })["catch"](function (err) {
+      console.log('error al cargar las lenguas');
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(cargarLengua, []);
+
+  var cargarDesarrollador = function cargarDesarrollador() {
+    var url = "/desarrolladores";
+    axios.get(url).then(function (respu) {
+      setDesarrollador(respu.data);
+      console.log(respu.data);
+    })["catch"](function (err) {
+      console.log('error al cargar los desarrolladores');
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(cargarDesarrollador, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card mt-5 py-5"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
@@ -65730,28 +65775,45 @@ function CursoForm() {
     className: "col-sm-4 col-lg-2 col-form-label"
   }, "Lengua"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4 col-form-label"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: onChange,
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: "lengua_id",
-    type: "text",
-    className: "form-control"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onChange: onChange,
+    className: "form-control",
+    required: "required"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, "seleccione"), lenguas.map(function (lengua_id) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: lengua_id.id,
+      value: lengua_id.id
+    }, lengua_id.lengua);
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "",
     className: "col-sm-4 col-lg-3 col-form-label"
   }, "Desarrollador"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-9 col-form-label"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: onChange,
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: "desarrollador_id",
+    onChange: onChange,
     className: "form-control",
-    placeholder: "Nombre "
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    required: "required"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, "seleccione"), desarrolladores.map(function (desarrollador_id) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: desarrollador_id.id,
+      value: desarrollador_id.id
+    }, desarrollador_id.nombres, " ", desarrollador_id.apellidos);
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "submit",
     className: "btn btn-success btn-block py-3 mt-2",
     value: "Guardar"
-  }))));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: '/',
+    className: "btn btn-outline-primary"
+  }, "Inicio"))));
 }
 
 /***/ }),

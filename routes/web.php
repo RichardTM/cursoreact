@@ -43,3 +43,25 @@ Route::get('/', function () {
         Route::post('lecciones', 'LeccionController@store');
         Route::patch('lecciones/{leccion}', 'LeccionController@update');
         Route::delete('lecciones/{leccion}', 'LeccionController@destroy');
+
+
+          //L E N G U A S
+          Route::get('lenguas/editar/{lengua}', 'LenguaController@edit');
+          Route::get('lenguas/lista', 'LenguaController@list');
+          Route::get('lenguas/crear', 'LenguaController@create');
+          Route::get('lenguas', 'LenguaController@index');
+          Route::get('lenguas/{lengua}', 'LenguaController@show');
+          Route::post('lenguas', 'LenguaController@store');
+          Route::patch('lenguas/{lengua}', 'LenguaController@update');
+          Route::delete('lenguas/{lengua}', 'LenguaController@destroy');
+
+
+          //D E S A R R O L L A D O R E S
+          Route::get('desarrolladores/editar/{desarrollador}', 'DesarrolladorController@edit');
+          Route::get('desarrolladores/lista', 'DesarrolladorController@list');
+          Route::get('desarrolladores/crear', 'DesarrolladorController@create');
+          Route::get('desarrolladores', 'DesarrolladorController@index');
+          Route::get('desarrolladores/{desarrollador}', 'DesarrolladorController@show');
+          Route::post('desarrolladores', 'DesarrolladorController@store');
+          Route::patch('desarrolladores/{desarrollador}', 'DesarrolladorController@update');
+          Route::delete('desarrolladores/{desarrollador}', 'DesarrolladorController@destroy');

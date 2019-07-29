@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 import CursoLista from './CursoLista';
 import NivelList from './NivelList';
 import CursoForm from './CursoForm';
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,8 +19,10 @@ const App = () => {
                 <h1 className="display-1">CURSO REACT</h1>
             </div>
             <div className="row justify-content-center">
-               {/* <CourseForm/> */}
-               <CursoForm/>
+
+               <Link to={'/curso/create' }  className="btn btn-success" >
+                    Crear Curso
+                </Link>
                <CourseList/>
 
             </div>
@@ -35,6 +38,7 @@ const Root = () => (
             <Route path="/" exact component={App}/>
             <Route path="/cursos/:id" exact component={CursoLista} />
             <Route path="/niveles/:id" exact component={NivelList} />
+            <Route path="/curso/create" exact component={CursoForm} />
             <Route component={NotFound} />
         </Switch>
     </HashRouter>
